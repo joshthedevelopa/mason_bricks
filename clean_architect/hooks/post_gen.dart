@@ -28,9 +28,11 @@ void run(HookContext context) async {
   );
 
   if (include_ui) {
-    final generator = await MasonGenerator.fromBrick(
-      Brick.path("./bricks/clar_ui"),
-    );
+    final brick = Brick.git(GitPath(
+      "https://github.com/joshthedevelopa/mason_bricks.git",
+      path: "clar_ui",
+    ));
+    final generator = await MasonGenerator.fromBrick(brick);
     final files = await generator.generate(
       directoryTarget,
       vars: {"name": name},
@@ -40,9 +42,11 @@ void run(HookContext context) async {
   }
 
   if (include_domain) {
-    final generator = await MasonGenerator.fromBrick(
-      Brick.path("./bricks/clar_domain"),
-    );
+    final brick = Brick.git(GitPath(
+      "https://github.com/joshthedevelopa/mason_bricks.git",
+      path: "clar_domain",
+    ));
+    final generator = await MasonGenerator.fromBrick(brick);
     final files = await generator.generate(
       directoryTarget,
       vars: {"name": name},
@@ -52,9 +56,11 @@ void run(HookContext context) async {
   }
 
   if (include_data) {
-    final generator = await MasonGenerator.fromBrick(
-      Brick.path("./bricks/clar_data"),
-    );
+    final brick = Brick.git(GitPath(
+      "https://github.com/joshthedevelopa/mason_bricks.git",
+      path: "clar_data",
+    ));
+    final generator = await MasonGenerator.fromBrick(brick);
     final files = await generator.generate(
       directoryTarget,
       vars: {"name": name},
