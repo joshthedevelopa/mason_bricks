@@ -3,9 +3,11 @@ import "package:mason/mason.dart";
 
 void run(HookContext context) async {
   final name = context.vars["name"];
+
   final include_ui = context.vars["include_ui"];
   final include_domain = context.vars["include_domain"];
   final include_data = context.vars["include_data"];
+
   final directoryTarget = DirectoryGeneratorTarget(Directory.current);
 
   final generationProgress = context.logger.progress(
