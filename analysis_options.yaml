@@ -1,3 +1,8 @@
 analyzer:
   exclude:
     - "**/__brick__/**"
+
+linter:
+  rules:
+    - prefer_double_quotes
+    - prefer_relative_imports

@@ -1,4 +1,4 @@
-name: fstruct_bloc_ui
+name: clar_data
 description: A new brick created with the Mason CLI.
 
 # The following defines the brick repository url.
@@ -28,5 +28,5 @@ environment:
 vars:
   name:
     type: string
-    description: This name will be use to create the barrel for the ui module.
-    prompt: What is the name of the ui module you want to create (Auth, Signup, Home)?
+    description: "This will create the data layer barrel for the specified module"
+    prompt: What is the name of your module?

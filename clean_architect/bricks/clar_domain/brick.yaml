@@ -1,5 +1,5 @@
-name: fstruct_init
-description: A brick for populating a new projects with an opinionated file structure.
+name: clar_domain
+description: A new brick created with the Mason CLI.
 
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.
@@ -14,6 +14,7 @@ version: 0.1.0+1
 # It includes the version of mason that the brick requires.
 environment:
   mason: ^0.1.0
+
 # Variables specify dynamic values that your brick depends on.
 # Zero or more variables can be specified for a given brick.
 # Each variable has:
@@ -24,3 +25,8 @@ environment:
 #  * an optional prompt phrase used when asking for the variable
 #  * a list of values (enums only)
 #  * an optional separator (list only)
+vars:
+  name:
+    type: string
+    description: "This will create the domain layer barrel for the specified module"
+    prompt: What is the name of your module?
