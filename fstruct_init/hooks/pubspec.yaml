@@ -1,0 +1,10 @@
+name: fstruct_init
+description: "A brick for populating a new projects with an opinionated file structure."
+publish_to: "none"
+version: 0.0.1+1
+
+environment:
+  sdk: "^3.6.0"
+
+dependencies:
+  mason: ^0.1.0
