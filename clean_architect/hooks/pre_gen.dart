@@ -101,7 +101,7 @@ void run(HookContext context) async {
 
 void printFiles(HookContext context, List<GeneratedFile> files) {
   for (final file in files) {
-    context.logger.info("Generated ${file.path} - ${file.status}");
+    context.logger.info("✓ Generated ${file.path} - ${file.status}");
   }
   context.logger.info("--\n\n");
 }
