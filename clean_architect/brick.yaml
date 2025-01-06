@@ -29,7 +29,7 @@ vars:
     type: string
     description: "This name will be use to create all the necessary files and folders. Location: lib/modules/{name}/data/..., lib/modules/{name}/domain/..."
     prompt: What is the name of your module?
-  include_domain:
+  include_ui:
     type: boolean
     description: "Include ui views to project"
     prompt: Should this module include its presentation layer?
