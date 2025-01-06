@@ -1,7 +1,7 @@
 import "dart:io";
 import "package:mason/mason.dart";
 
-void run(HookContext context) async {
+Future<void> run(HookContext context) async {
   final name = context.vars["name"];
 
   final include_ui = context.vars["include_ui"];
