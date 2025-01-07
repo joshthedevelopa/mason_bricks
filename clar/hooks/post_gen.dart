@@ -1,8 +1,7 @@
-import "dart:io";
-import "dart:isolate";
 import "package:mason/mason.dart";
 
-Future<void> run(HookContext context) async {
+void run(HookContext context) {
+  context.logger.info("hello {{name}}!");
   // final name = context.vars["name"];
 
   // final include_ui = context.vars["include_ui"];
@@ -73,37 +72,37 @@ Future<void> run(HookContext context) async {
   // }
   // generationProgress.complete();
 
-  final installProgress = context.logger.progress(
-    "Installing packages.",
-    // options: ProgressOptions(
-    //   animation: ProgressAnimation(
-    //     frames: [
-    //       ".\\",
-    //       ".|",
-    //       "./",
-    //       "..\\",
-    //       "..|",
-    //       "../",
-    //       "...\\",
-    //       "...|",
-    //       "..."
-    //     ],
-    //     interval: Duration(milliseconds: 80),
-    //   ),
-    // ),
-  );
+  // final installProgress = context.logger.progress(
+  //   "Installing packages.",
+  // options: ProgressOptions(
+  //   animation: ProgressAnimation(
+  //     frames: [
+  //       ".\\",
+  //       ".|",
+  //       "./",
+  //       "..\\",
+  //       "..|",
+  //       "../",
+  //       "...\\",
+  //       "...|",
+  //       "..."
+  //     ],
+  //     interval: Duration(milliseconds: 80),
+  //   ),
+  // ),
+  // );
 
-  await Process.run(
-      "flutter",
-      [
-        "packages",
-        "add",
-        "flutter_bloc",
-        "freezed_annotation",
-        "json_annotation",
-        "go_router"
-      ],
-      runInShell: true);
+  // await Process.run(
+  //     "flutter",
+  //     [
+  //       "packages",
+  //       "add",
+  //       "flutter_bloc",
+  //       "freezed_annotation",
+  //       "json_annotation",
+  //       "go_router"
+  //     ],
+  //     runInShell: true);
   // await Process.run(
   //   "flutter",
   //   [
@@ -120,7 +119,7 @@ Future<void> run(HookContext context) async {
 
   // await Process.run("flutter", ["pub", "get"]);
 
-  installProgress.complete();
+  // installProgress.complete();
 }
 
 // void printFiles(HookContext context, List<GeneratedFile> files) {
