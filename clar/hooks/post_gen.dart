@@ -49,9 +49,10 @@ Future<void> generate(
   generationProgress.complete();
 
   for (final file in files) {
-    final [_, fileName] = file.path.split("lib/");
+    final fileName = file.path.replaceAll("\\", "/");
     context.logger.info(
-      "$greenCheck Generated $fileName - ${file.status.name}",
+      "$greenCheck Generated "
+      "${fileName.replaceAll(RegExp(".*lib\/"), "")} - ${file.status.name}",
     );
   }
 
