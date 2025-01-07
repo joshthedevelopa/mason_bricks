@@ -91,25 +91,40 @@ Future<void> run(HookContext context) async {
     ),
   );
 
-  await Process.run("flutter", ["pub", "add", "flutter_bloc"]);
-  await Process.run("flutter", ["pub", "add", "freezed_annotation"]);
-  await Process.run("flutter", ["pub", "add", "json_annotation"]);
-  await Process.run("flutter", ["pub", "add", "go_router"]);
+  await Process.run(
+    "flutter",
+    [
+      "pub",
+      "add",
+      "flutter_bloc",
+      "freezed_annotation",
+      "json_annotation",
+      "go_router"
+    ],
+  );
 
-  await Process.run("flutter", ["pub", "add", "--dev", "build_runner"]);
-  await Process.run("flutter", ["pub", "add", "--dev", "build_verify"]);
-  await Process.run("flutter", ["pub", "add", "--dev", "freezed"]);
-  await Process.run("flutter", ["pub", "add", "--dev", "json_serializable"]);
-  await Process.run("flutter", ["pub", "add", "--dev", "go_router_builder"]);
+  await Process.run(
+    "flutter",
+    [
+      "pub",
+      "add",
+      "--dev",
+      "build_runner",
+      "build_verify",
+      "freezed",
+      "json_serializable",
+      "go_router_builder"
+    ],
+  );
 
   await Process.run("flutter", ["pub", "get"]);
 
   installProgress.complete();
 }
 
-void printFiles(HookContext context, List<GeneratedFile> files) {
-  for (final file in files) {
-    context.logger.info("✓ Generated ${file.path} - ${file.status}");
-  }
-  context.logger.info("--\n\n");
-}
+// void printFiles(HookContext context, List<GeneratedFile> files) {
+//   for (final file in files) {
+//     context.logger.info("✓ Generated ${file.path} - ${file.status}");
+//   }
+//   context.logger.info("--\n\n");
+// }
