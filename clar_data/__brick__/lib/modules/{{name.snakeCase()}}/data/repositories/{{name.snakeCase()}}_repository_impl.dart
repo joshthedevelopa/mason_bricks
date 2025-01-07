@@ -1,4 +1,4 @@
-part of "../{{name.snakeCase()}}.module.dart";
+part of "../{{name.snakeCase()}}.data.dart";
 
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
   final {{name.pascalCase()}}LocalService _localService;

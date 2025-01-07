@@ -3,7 +3,7 @@ import 'package:mason/mason.dart';
 
 const _greenCheck = "\x1B[32m\u2714\x1B[0m";
 const _git = "https://github.com/joshthedevelopa/mason_bricks.git";
-const _defaultOptions = const ProgressOptions();
+const _defaultOptions = ProgressOptions();
 final _defaultDirectoryTarget = DirectoryGeneratorTarget(Directory.current);
 
 Future<void> generate(
@@ -27,7 +27,7 @@ Future<void> generate(
     final fileName = file.path.replaceAll("\\", "/");
     context.logger.info(
       "$_greenCheck Generated "
-      "${fileName.replaceAll(RegExp(".*lib\/"), "")} - ${file.status.name}",
+      "${fileName.replaceAll(RegExp(".*lib/"), "")} - ${file.status.name}",
     );
   }
 }

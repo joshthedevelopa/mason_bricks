@@ -1,6 +1,7 @@
-import '/imports.dart';
+import '../../../imports.dart';
 
 part '.generated/result.freezed.dart';
+part '.generated/result.g.dart';
 
 @freezed
 sealed class Result<T> with _$Result<T> {
