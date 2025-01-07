@@ -95,7 +95,7 @@ Future<void> run(HookContext context) async {
   await Process.run(
     "flutter",
     [
-      "pub",
+      "packages",
       "add",
       "flutter_bloc",
       "freezed_annotation",
@@ -107,7 +107,7 @@ Future<void> run(HookContext context) async {
   await Process.run(
     "flutter",
     [
-      "pub",
+      "packages",
       "add",
       "--dev",
       "build_runner",
