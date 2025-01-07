@@ -93,8 +93,7 @@ Future<void> run(HookContext context) async {
     // ),
   );
 
-  await Isolate.run(() async {
-    await Process.run(
+  await Process.run(
       "flutter",
       [
         "packages",
@@ -104,9 +103,7 @@ Future<void> run(HookContext context) async {
         "json_annotation",
         "go_router"
       ],
-    );
-  });
-
+      runInShell: true);
   // await Process.run(
   //   "flutter",
   //   [
