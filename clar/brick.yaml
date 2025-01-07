@@ -1,4 +1,4 @@
-name: clean_architect
+name: clar
 description: A brick for populating a new projects with an opinionated file structure.
 
 # The following defines the brick repository url.
