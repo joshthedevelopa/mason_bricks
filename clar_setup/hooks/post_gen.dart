@@ -42,7 +42,7 @@ Future<void> run(HookContext context) async {
 
   installProgress.complete();
 
-  final buildYaml = File("build.yaml");
+  final buildYaml = File("./build.yaml");
   if (await buildYaml.exists()) {
     String content = await buildYaml.readAsString();
     content = content.replaceAll("{value}", "{{value}}");
