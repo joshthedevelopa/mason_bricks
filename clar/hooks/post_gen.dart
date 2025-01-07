@@ -16,6 +16,7 @@ Future<void> run(HookContext context) async {
 
   if (include_setup) {
     await generate(context, "clar_setup");
+    await installPackages(context);
   }
 
   if (include_ui) {
@@ -29,6 +30,8 @@ Future<void> run(HookContext context) async {
   if (include_data) {
     await generate(context, "clar_data", {"name": name});
   }
+
+  await build(context);
 }
 
 Future<void> generate(
@@ -42,7 +45,7 @@ Future<void> generate(
     options: ProgressOptions(),
   );
 
-  final brick = Brick.git(GitPath(git, path: path));
+  final brick = Brick.path("parts/$path");
   final generator = await MasonGenerator.fromBrick(brick);
   final files = await generator.generate(directoryTarget, vars: vars);
 
@@ -55,6 +58,72 @@ Future<void> generate(
       "${fileName.replaceAll(RegExp(".*lib\/"), "")} - ${file.status.name}",
     );
   }
+}
 
-  context.logger.info("");
+Future<void> installPackages(HookContext context) async {
+  final installProgress = context.logger.progress(
+    "Installing packages.",
+    options: ProgressOptions(),
+  );
+
+  await Process.run(
+    "flutter",
+    [
+      "pub",
+      "add",
+      "flutter_bloc",
+      "freezed_annotation",
+      "json_annotation",
+      "go_router"
+    ],
+    runInShell: true,
+  );
+  await Process.run(
+    "flutter",
+    [
+      "pub",
+      "add",
+      "--dev",
+      "build_runner",
+      "build_verify",
+      "freezed",
+      "json_serializable",
+      "go_router_builder"
+    ],
+    runInShell: true,
+  );
+
+  await Process.run(
+    "flutter",
+    ["pub", "get"],
+    runInShell: true,
+  );
+
+  installProgress.complete();
+}
+
+Future<void> build(HookContext context) async {
+  final buildProgress = context.logger.progress(
+    "Building project.",
+    options: option,
+  );
+
+  final buildYaml = File("build.yaml");
+  if (await buildYaml.exists()) {
+    String content = await buildYaml.readAsString();
+    if (!RegExp("{{dir}}").hasMatch(content)) {
+      content = content.replaceAll("{dir}", "{{dir}}");
+      content = content.replaceAll("{file}", "{{file}}");
+
+      await buildYaml.writeAsString(content);
+    }
+  }
+
+  await Process.run(
+    "dart",
+    ["run", "build_runner", "build", "-d"],
+    runInShell: true,
+  );
+
+  buildProgress.complete();
 }
