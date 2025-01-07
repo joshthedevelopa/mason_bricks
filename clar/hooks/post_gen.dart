@@ -1,130 +1,59 @@
+import "dart:io";
 import "package:mason/mason.dart";
 
-void run(HookContext context) {
-  context.logger.detail("hello!");
-  // final name = context.vars["name"];
+const greenCheck = "\x1B[32m\u2714\x1B[0m";
+const git = "https://github.com/joshthedevelopa/mason_bricks.git";
+const option = const ProgressOptions();
+final directoryTarget = DirectoryGeneratorTarget(Directory.current);
 
-  // final include_ui = context.vars["include_ui"];
-  // final include_domain = context.vars["include_domain"];
-  // final include_data = context.vars["include_data"];
+Future<void> run(HookContext context) async {
+  final name = context.vars["name"];
 
-  // final directoryTarget = DirectoryGeneratorTarget(Directory.current);
+  final include_ui = context.vars["include_ui"];
+  final include_domain = context.vars["include_domain"];
+  final include_data = context.vars["include_data"];
+  final include_setup = context.vars["include_setup"];
 
-  // final generationProgress = context.logger.progress(
-  //   "Generating files.",
-  //   options: ProgressOptions(
-  //     animation: ProgressAnimation(
-  //       frames: [
-  //         ".\\",
-  //         ".|",
-  //         "./",
-  //         "..\\",
-  //         "..|",
-  //         "../' '...\\",
-  //         "...|",
-  //         "..."
-  //       ],
-  //       interval: Duration(milliseconds: 80),
-  //     ),
-  //   ),
-  // );
+  if (include_setup) {
+    await generate(context, "clar_setup");
+  }
 
-  // if (include_ui) {
-  //   final brick = Brick.git(GitPath(
-  //     "https://github.com/joshthedevelopa/mason_bricks.git",
-  //     path: "clar_ui",
-  //   ));
-  //   final generator = await MasonGenerator.fromBrick(brick);
-  //   final files = await generator.generate(
-  //     directoryTarget,
-  //     vars: {"name": name},
-  //   );
-  //   context.logger.info("Generated UI files.");
-  //   printFiles(context, files);
-  // }
+  if (include_ui) {
+    await generate(context, "clar_ui", {"name": name});
+  }
 
-  // if (include_domain) {
-  //   final brick = Brick.git(GitPath(
-  //     "https://github.com/joshthedevelopa/mason_bricks.git",
-  //     path: "clar_domain",
-  //   ));
-  //   final generator = await MasonGenerator.fromBrick(brick);
-  //   final files = await generator.generate(
-  //     directoryTarget,
-  //     vars: {"name": name},
-  //   );
-  //   context.logger.info("Generated Domain files.");
-  //   printFiles(context, files);
-  // }
+  if (include_domain) {
+    await generate(context, "clar_domain", {"name": name});
+  }
 
-  // if (include_data) {
-  //   final brick = Brick.git(GitPath(
-  //     "https://github.com/joshthedevelopa/mason_bricks.git",
-  //     path: "clar_data",
-  //   ));
-  //   final generator = await MasonGenerator.fromBrick(brick);
-  //   final files = await generator.generate(
-  //     directoryTarget,
-  //     vars: {"name": name},
-  //   );
-  //   context.logger.info("Generated Data files.");
-  //   printFiles(context, files);
-  // }
-  // generationProgress.complete();
-
-  // final installProgress = context.logger.progress(
-  //   "Installing packages.",
-  // options: ProgressOptions(
-  //   animation: ProgressAnimation(
-  //     frames: [
-  //       ".\\",
-  //       ".|",
-  //       "./",
-  //       "..\\",
-  //       "..|",
-  //       "../",
-  //       "...\\",
-  //       "...|",
-  //       "..."
-  //     ],
-  //     interval: Duration(milliseconds: 80),
-  //   ),
-  // ),
-  // );
-
-  // await Process.run(
-  //     "flutter",
-  //     [
-  //       "packages",
-  //       "add",
-  //       "flutter_bloc",
-  //       "freezed_annotation",
-  //       "json_annotation",
-  //       "go_router"
-  //     ],
-  //     runInShell: true);
-  // await Process.run(
-  //   "flutter",
-  //   [
-  //     "packages",
-  //     "add",
-  //     "--dev",
-  //     "build_runner",
-  //     "build_verify",
-  //     "freezed",
-  //     "json_serializable",
-  //     "go_router_builder"
-  //   ],
-  // );
-
-  // await Process.run("flutter", ["pub", "get"]);
-
-  // installProgress.complete();
+  if (include_data) {
+    await generate(context, "clar_data", {"name": name});
+  }
 }
 
-// void printFiles(HookContext context, List<GeneratedFile> files) {
-//   for (final file in files) {
-//     context.logger.info("✓ Generated ${file.path} - ${file.status}");
-//   }
-//   context.logger.info("--\n\n");
-// }
+Future<void> generate(
+  HookContext context,
+  String path, [
+  Map<String, dynamic> vars = const {},
+]) async {
+  context.logger.info("");
+  final generationProgress = context.logger.progress(
+    "Generating ${path.split("_").lastOrNull ?? "clar"} files",
+    options: ProgressOptions(),
+  );
+
+  final brick = Brick.git(GitPath(git, path: path));
+  final generator = await MasonGenerator.fromBrick(brick);
+  final files = await generator.generate(directoryTarget, vars: vars);
+
+  generationProgress.complete();
+
+  for (final file in files) {
+    final [_, fileName] = file.path.split("lib/");
+    context.logger.info(
+      "$greenCheck Generated $fileName - ${file.status.name}",
+    );
+  }
+
+  context.logger.info("");
+}
