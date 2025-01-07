@@ -1,5 +1,7 @@
 import 'imports.dart';
 
+part ".generated/routes.g.dart";
+
 @TypedShellRoute<EntryRoute>(routes: [])
 @immutable
 class EntryRoute extends ShellRouteData {

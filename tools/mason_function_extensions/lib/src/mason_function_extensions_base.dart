@@ -47,23 +47,28 @@ Future<void> installPackages(HookContext context) async {
       "freezed_annotation",
       "json_annotation",
       "go_router"
+          "dev:build_runner",
+      "dev:build_verify",
+      "dev:freezed",
+      "dev:json_serializable",
+      "dev:go_router_builder"
     ],
     runInShell: true,
   );
-  await Process.run(
-    "flutter",
-    [
-      "pub",
-      "add",
-      "--dev",
-      "build_runner",
-      "build_verify",
-      "freezed",
-      "json_serializable",
-      "go_router_builder"
-    ],
-    runInShell: true,
-  );
+  // await Process.run(
+  //   "flutter",
+  //   [
+  //     "pub",
+  //     "add",
+  //     "--dev",
+  //     "build_runner",
+  //     "build_verify",
+  //     "freezed",
+  //     "json_serializable",
+  //     "go_router_builder"
+  //   ],
+  //   runInShell: true,
+  // );
 
   await Process.run(
     "flutter",
