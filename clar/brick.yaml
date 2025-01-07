@@ -33,7 +33,7 @@ vars:
     type: boolean
     description: "Include ui views to project"
     prompt: Should this module include its presentation layer?
-    default: true
+    default: false
   include_domain:
     type: boolean
     description: "Include domain folder in the module"
