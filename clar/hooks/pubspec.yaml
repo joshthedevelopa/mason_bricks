@@ -8,3 +8,9 @@ environment:
 
 dependencies:
   mason: ^0.1.0
+  path: ^1.9.1
+  mason_function_extensions:
+    git:
+      url: "https://github.com/joshthedevelopa/mason_bricks.git"
+      ref: main
+      path: "tools/mason_function_extensions"
