@@ -74,22 +74,22 @@ Future<void> run(HookContext context) async {
 
   final installProgress = context.logger.progress(
     "Installing packages.",
-    options: ProgressOptions(
-      animation: ProgressAnimation(
-        frames: [
-          ".\\",
-          ".|",
-          "./",
-          "..\\",
-          "..|",
-          "../",
-          "...\\",
-          "...|",
-          "..."
-        ],
-        interval: Duration(milliseconds: 80),
-      ),
-    ),
+    // options: ProgressOptions(
+    //   animation: ProgressAnimation(
+    //     frames: [
+    //       ".\\",
+    //       ".|",
+    //       "./",
+    //       "..\\",
+    //       "..|",
+    //       "../",
+    //       "...\\",
+    //       "...|",
+    //       "..."
+    //     ],
+    //     interval: Duration(milliseconds: 80),
+    //   ),
+    // ),
   );
 
   await Process.run(
