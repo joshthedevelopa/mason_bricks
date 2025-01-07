@@ -82,7 +82,8 @@ Future<void> run(HookContext context) async {
           "./",
           "..\\",
           "..|",
-          "../' '...\\",
+          "../",
+          "...\\",
           "...|",
           "..."
         ],
