@@ -24,23 +24,23 @@ environment:
 #  * an optional prompt phrase used when asking for the variable
 #  * a list of values (enums only)
 #  * an optional separator (list only)
-vars:
-  name:
-    type: string
-    description: "This name will be use to create all the necessary files and folders. Location: lib/modules/{name}/data/..., lib/modules/{name}/domain/..."
-    prompt: What is the name of your module?
-  include_ui:
-    type: boolean
-    description: "Include ui views to project"
-    prompt: Should this module include its presentation layer?
-    default: false
-  include_domain:
-    type: boolean
-    description: "Include domain folder in the module"
-    prompt: Should this module include its domain layer?
-    default: false
-  include_data:
-    type: boolean
-    description: "Include data folder in the module"
-    prompt: Should this module include its data layer?
-    default: false
+# vars:
+#   name:
+#     type: string
+#     description: "This name will be use to create all the necessary files and folders. Location: lib/modules/{name}/data/..., lib/modules/{name}/domain/..."
+#     prompt: What is the name of your module?
+#   include_ui:
+#     type: boolean
+#     description: "Include ui views to project"
+#     prompt: Should this module include its presentation layer?
+#     default: false
+#   include_domain:
+#     type: boolean
+#     description: "Include domain folder in the module"
+#     prompt: Should this module include its domain layer?
+#     default: false
+#   include_data:
+#     type: boolean
+#     description: "Include data folder in the module"
+#     prompt: Should this module include its data layer?
+#     default: false

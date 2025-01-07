@@ -2,75 +2,75 @@ import "dart:io";
 import "package:mason/mason.dart";
 
 Future<void> run(HookContext context) async {
-  final name = context.vars["name"];
+  // final name = context.vars["name"];
 
-  final include_ui = context.vars["include_ui"];
-  final include_domain = context.vars["include_domain"];
-  final include_data = context.vars["include_data"];
+  // final include_ui = context.vars["include_ui"];
+  // final include_domain = context.vars["include_domain"];
+  // final include_data = context.vars["include_data"];
 
-  final directoryTarget = DirectoryGeneratorTarget(Directory.current);
+  // final directoryTarget = DirectoryGeneratorTarget(Directory.current);
 
-  final generationProgress = context.logger.progress(
-    "Generating files.",
-    options: ProgressOptions(
-      animation: ProgressAnimation(
-        frames: [
-          ".\\",
-          ".|",
-          "./",
-          "..\\",
-          "..|",
-          "../' '...\\",
-          "...|",
-          "..."
-        ],
-        interval: Duration(milliseconds: 80),
-      ),
-    ),
-  );
+  // final generationProgress = context.logger.progress(
+  //   "Generating files.",
+  //   options: ProgressOptions(
+  //     animation: ProgressAnimation(
+  //       frames: [
+  //         ".\\",
+  //         ".|",
+  //         "./",
+  //         "..\\",
+  //         "..|",
+  //         "../' '...\\",
+  //         "...|",
+  //         "..."
+  //       ],
+  //       interval: Duration(milliseconds: 80),
+  //     ),
+  //   ),
+  // );
 
-  if (include_ui) {
-    final brick = Brick.git(GitPath(
-      "https://github.com/joshthedevelopa/mason_bricks.git",
-      path: "clar_ui",
-    ));
-    final generator = await MasonGenerator.fromBrick(brick);
-    final files = await generator.generate(
-      directoryTarget,
-      vars: {"name": name},
-    );
-    context.logger.info("Generated UI files.");
-    printFiles(context, files);
-  }
+  // if (include_ui) {
+  //   final brick = Brick.git(GitPath(
+  //     "https://github.com/joshthedevelopa/mason_bricks.git",
+  //     path: "clar_ui",
+  //   ));
+  //   final generator = await MasonGenerator.fromBrick(brick);
+  //   final files = await generator.generate(
+  //     directoryTarget,
+  //     vars: {"name": name},
+  //   );
+  //   context.logger.info("Generated UI files.");
+  //   printFiles(context, files);
+  // }
 
-  if (include_domain) {
-    final brick = Brick.git(GitPath(
-      "https://github.com/joshthedevelopa/mason_bricks.git",
-      path: "clar_domain",
-    ));
-    final generator = await MasonGenerator.fromBrick(brick);
-    final files = await generator.generate(
-      directoryTarget,
-      vars: {"name": name},
-    );
-    context.logger.info("Generated Domain files.");
-    printFiles(context, files);
-  }
+  // if (include_domain) {
+  //   final brick = Brick.git(GitPath(
+  //     "https://github.com/joshthedevelopa/mason_bricks.git",
+  //     path: "clar_domain",
+  //   ));
+  //   final generator = await MasonGenerator.fromBrick(brick);
+  //   final files = await generator.generate(
+  //     directoryTarget,
+  //     vars: {"name": name},
+  //   );
+  //   context.logger.info("Generated Domain files.");
+  //   printFiles(context, files);
+  // }
 
-  if (include_data) {
-    final brick = Brick.git(GitPath(
-      "https://github.com/joshthedevelopa/mason_bricks.git",
-      path: "clar_data",
-    ));
-    final generator = await MasonGenerator.fromBrick(brick);
-    final files = await generator.generate(
-      directoryTarget,
-      vars: {"name": name},
-    );
-    context.logger.info("Generated Data files.");
-    printFiles(context, files);
-  }
-  generationProgress.complete();
+  // if (include_data) {
+  //   final brick = Brick.git(GitPath(
+  //     "https://github.com/joshthedevelopa/mason_bricks.git",
+  //     path: "clar_data",
+  //   ));
+  //   final generator = await MasonGenerator.fromBrick(brick);
+  //   final files = await generator.generate(
+  //     directoryTarget,
+  //     vars: {"name": name},
+  //   );
+  //   context.logger.info("Generated Data files.");
+  //   printFiles(context, files);
+  // }
+  // generationProgress.complete();
 
   final installProgress = context.logger.progress(
     "Installing packages.",
