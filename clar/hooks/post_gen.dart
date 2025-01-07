@@ -1,4 +1,5 @@
 import "dart:io";
+import "dart:isolate";
 import "package:mason/mason.dart";
 
 Future<void> run(HookContext context) async {
@@ -92,33 +93,35 @@ Future<void> run(HookContext context) async {
     // ),
   );
 
-  await Process.run(
-    "flutter",
-    [
-      "packages",
-      "add",
-      "flutter_bloc",
-      "freezed_annotation",
-      "json_annotation",
-      "go_router"
-    ],
-  );
+  await Isolate.run(() async {
+    await Process.run(
+      "flutter",
+      [
+        "packages",
+        "add",
+        "flutter_bloc",
+        "freezed_annotation",
+        "json_annotation",
+        "go_router"
+      ],
+    );
+  });
 
-  await Process.run(
-    "flutter",
-    [
-      "packages",
-      "add",
-      "--dev",
-      "build_runner",
-      "build_verify",
-      "freezed",
-      "json_serializable",
-      "go_router_builder"
-    ],
-  );
+  // await Process.run(
+  //   "flutter",
+  //   [
+  //     "packages",
+  //     "add",
+  //     "--dev",
+  //     "build_runner",
+  //     "build_verify",
+  //     "freezed",
+  //     "json_serializable",
+  //     "go_router_builder"
+  //   ],
+  // );
 
-  await Process.run("flutter", ["pub", "get"]);
+  // await Process.run("flutter", ["pub", "get"]);
 
   installProgress.complete();
 }
