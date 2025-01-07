@@ -1,7 +1,7 @@
 import "package:mason/mason.dart";
 
 void run(HookContext context) {
-  context.logger.info("hello {{name}}!");
+  context.logger.detail("hello!");
   // final name = context.vars["name"];
 
   // final include_ui = context.vars["include_ui"];
