@@ -1,3 +1,7 @@
-import 'package:mason/mason.dart';
+import 'package:test/test.dart';
 
-void main(List<String> args) {}
+void main() async {
+  test('Try', () {
+    expect("1", "1");
+  });
+}
