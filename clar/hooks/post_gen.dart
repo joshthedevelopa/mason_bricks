@@ -4,10 +4,12 @@ import "package:mason_function_extensions/mason_function_extensions.dart";
 Future<void> run(HookContext context) async {
   final name = context.vars["name"];
 
-  final include_setup = context.vars["include_setup"];
-  final include_ui = context.vars["include_ui"];
-  final include_domain = context.vars["include_domain"];
-  final include_data = context.vars["include_data"];
+  final {
+    "include_setup": include_setup,
+    "include_ui": include_ui,
+    "include_domain": include_domain,
+    "include_data": include_data
+  } = context.vars;
 
   if (include_setup) {
     await generate(context.logger, "clar_setup");
