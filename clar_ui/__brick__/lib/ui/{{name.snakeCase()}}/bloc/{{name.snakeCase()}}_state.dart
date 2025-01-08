@@ -7,6 +7,6 @@ class {{ name.pascalCase() }}State with _${{ name.pascalCase() }}State {
   }) = _{{ name.pascalCase() }}State;
 
   factory {{ name.pascalCase() }}State.fromJson(Map<String, dynamic> json) { 
-    return _${{ name.pascalCase() }}FromJson(json);
+    return _${{ name.pascalCase() }}StateFromJson(json);
   }
 }

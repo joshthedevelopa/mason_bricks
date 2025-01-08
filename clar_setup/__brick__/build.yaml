@@ -7,11 +7,15 @@ targets:
             "lib/{dir}/{file}.dart": "lib/{dir}/.generated/{file}.g.dart"
 
       json_serializable:
+        generate_for:
+          - lib/**.dart
         options:
           generic_argument_factories: true
           explicit_to_json: true
 
       freezed:
+        generate_for:
+          - lib/**.dart
         options:
           from_json: true
           to_json: true

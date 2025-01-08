@@ -12,6 +12,7 @@ class EntryRoute extends ShellRouteData {
     BuildContext context,
     GoRouterState state,
     Widget navigator,
-  ) =>
-      navigator;
+  ) {
+    return navigator;
+  }
 }
