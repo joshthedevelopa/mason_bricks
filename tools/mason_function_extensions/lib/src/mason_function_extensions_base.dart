@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:mason/mason.dart';
 
-const _greenCheck = "\x1B[32m\u2714\x1B[0m";
+const _greenCheck = "\u2705\n";
 const _git = "https://github.com/joshthedevelopa/mason_bricks.git";
 const _defaultOptions = ProgressOptions();
 final _defaultDirectoryTarget = DirectoryGeneratorTarget(Directory.current);
