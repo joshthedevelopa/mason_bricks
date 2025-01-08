@@ -1,9 +1,8 @@
 import 'dart:io';
 import 'package:mason/mason.dart';
-import 'clar_bundles.dart';
 
 const _greenCheck = "\x1B[32m\u2714\x1B[0m";
-// const _git = "https://github.com/joshthedevelopa/mason_bricks.git";
+const _git = "https://github.com/joshthedevelopa/mason_bricks.git";
 const _defaultOptions = ProgressOptions();
 final _defaultDirectoryTarget = DirectoryGeneratorTarget(Directory.current);
 
@@ -18,14 +17,8 @@ Future<void> generate(
     options: ProgressOptions(),
   );
 
-  // final brick = Brick.git(GitPath(_git, path: path, ref: "main"));
-  final generator = await MasonGenerator.fromBundle(switch (path) {
-    "clar_setup" => clarSetupBundle,
-    "clar_ui" => clarUiBundle,
-    "clar_domain" => clarDomainBundle,
-    "clar_data" => clarDataBundle,
-    _ => throw ArgumentError("Invalid path: $path"),
-  });
+  final brick = Brick.git(GitPath(_git, path: path, ref: "main"));
+  final generator = await MasonGenerator.fromBrick(brick);
   final files = await generator.generate(_defaultDirectoryTarget, vars: vars);
 
   generationProgress.complete();
