@@ -10,21 +10,21 @@ Future<void> run(HookContext context) async {
   final include_data = context.vars["include_data"];
 
   if (include_setup) {
-    await generate(context, "clar_setup");
-    await installPackages(context);
+    await generate(context.logger, "clar_setup");
+    await installPackages(context.logger);
   }
 
   if (include_ui) {
-    await generate(context, "clar_ui", {"name": name});
+    await generate(context.logger, "clar_ui", {"name": name});
   }
 
   if (include_domain) {
-    await generate(context, "clar_domain", {"name": name});
+    await generate(context.logger, "clar_domain", {"name": name});
   }
 
   if (include_data) {
-    await generate(context, "clar_data", {"name": name});
+    await generate(context.logger, "clar_data", {"name": name});
   }
 
-  await build(context);
+  await build(context.logger);
 }

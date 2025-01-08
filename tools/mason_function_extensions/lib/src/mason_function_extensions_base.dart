@@ -6,13 +6,31 @@ const _git = "https://github.com/joshthedevelopa/mason_bricks";
 const _defaultOptions = ProgressOptions();
 final _defaultDirectoryTarget = DirectoryGeneratorTarget(Directory.current);
 
+void main() async {
+  final brick = Brick.git(GitPath(_git, path: "clar_ui", ref: "main"));
+  final generator = await MasonGenerator.fromBrick(brick);
+  final files = await generator.generate(
+    _defaultDirectoryTarget,
+    vars: {"name": "auth"},
+  );
+
+  for (final file in files) {
+    final fileName = file.path.replaceAll("\\", "/");
+
+    print(
+      "$_greenCheck Generated "
+      "${fileName.replaceAll(RegExp(".*lib/"), "")} - ${file.status.name}",
+    );
+  }
+}
+
 Future<void> generate(
-  HookContext context,
+  Logger logger,
   String path, [
   Map<String, dynamic> vars = const {},
 ]) async {
-  context.logger.info("");
-  final generationProgress = context.logger.progress(
+  logger.info("");
+  final generationProgress = logger.progress(
     "Generating ${path.split("_").lastOrNull ?? "clar"} files",
     options: ProgressOptions(),
   );
@@ -25,15 +43,15 @@ Future<void> generate(
 
   for (final file in files) {
     final fileName = file.path.replaceAll("\\", "/");
-    context.logger.info(
+    logger.info(
       "$_greenCheck Generated "
       "${fileName.replaceAll(RegExp(".*lib/"), "")} - ${file.status.name}",
     );
   }
 }
 
-Future<void> installPackages(HookContext context) async {
-  final installProgress = context.logger.progress(
+Future<void> installPackages(Logger logger) async {
+  final installProgress = logger.progress(
     "Installing packages.",
     options: ProgressOptions(),
   );
