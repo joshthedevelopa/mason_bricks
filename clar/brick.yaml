@@ -14,14 +14,14 @@ vars:
 
   include_setup:
     type: boolean
-    description: "Include ui views to project"
-    prompt: Should this module include its presentation layer?
+    description: "Setup the project with the necessary initial files and folders"
+    prompt: Do you wish to setup the project?
     default: false
 
   include_ui:
     type: boolean
     description: "Include ui views to project"
-    prompt: Should this module include its presentation layer?
+    prompt: Should this module include its ui layer?
     default: false
 
   include_domain:
