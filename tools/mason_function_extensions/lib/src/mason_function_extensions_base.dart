@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:mason/mason.dart';
 
-// const _greenCheck = "\x1B[32m\u2714\x1B[0m";
+const _greenCheck = "\x1B[32m\u2714\x1B[0m";
 const _git = "https://github.com/joshthedevelopa/mason_bricks";
 const _defaultOptions = ProgressOptions();
-// final _defaultDirectoryTarget = DirectoryGeneratorTarget(Directory.current);
+final _defaultDirectoryTarget = DirectoryGeneratorTarget(Directory.current);
 
 Future<void> generate(
   Logger logger,
@@ -18,20 +18,19 @@ Future<void> generate(
       "Generating ${path.split("_").lastOrNull ?? "clar"} files",
       options: ProgressOptions(),
     );
+    final brick = Brick.git(GitPath(_git, path: path, ref: "main"));
+    final generator = await MasonGenerator.fromBrick(brick);
+    final files = await generator.generate(_defaultDirectoryTarget, vars: vars);
 
-    await Process.run("mason", [
-      "add $path",
-      "--git-url $_git",
-      "--git-path $path",
-    ]);
-
-    final result = await Process.run("mason", [
-      "make $path",
-      ...vars.entries.map((entry) => "--${entry.key} ${entry.value}")
-    ]);
-
-    logger.info(result.stdout.toString());
     generationProgress.complete();
+
+    for (final file in files) {
+      final fileName = file.path.replaceAll("\\", "/");
+      logger.info(
+        "$_greenCheck Generated "
+        "${fileName.replaceAll(RegExp(".*lib/"), "")} - ${file.status.name}",
+      );
+    }
   } catch (e) {
     logger.err(e.toString());
     return;
