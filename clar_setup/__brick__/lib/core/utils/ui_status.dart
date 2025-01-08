@@ -1,4 +1,4 @@
-import '../../../imports.dart';
+import '../../imports.dart';
 
 part '.generated/ui_status.freezed.dart';
 part '.generated/ui_status.g.dart';

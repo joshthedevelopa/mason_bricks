@@ -54,20 +54,6 @@ Future<void> installPackages(HookContext context) async {
     ],
     runInShell: true,
   );
-  // await Process.run(
-  //   "flutter",
-  //   [
-  //     "pub",
-  //     "add",
-  //     "--dev",
-  //     "build_runner",
-  //     "build_verify",
-  //     "freezed",
-  //     "json_serializable",
-  //     "go_router_builder"
-  //   ],
-  //   runInShell: true,
-  // );
 
   await Process.run(
     "flutter",
