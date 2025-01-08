@@ -17,7 +17,7 @@ Future<void> generate(
     options: ProgressOptions(),
   );
 
-  final brick = Brick.git(GitPath(_git, path: path));
+  final brick = Brick.git(GitPath(_git, path: path, ref: "main"));
   final generator = await MasonGenerator.fromBrick(brick);
   final files = await generator.generate(_defaultDirectoryTarget, vars: vars);
 
