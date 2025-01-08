@@ -46,9 +46,8 @@ Future<void> installPackages(HookContext context) async {
       "flutter_bloc",
       "freezed_annotation",
       "json_annotation",
-      "go_router"
-          "dev:build_runner",
-      "dev:build_verify",
+      "go_router",
+      "dev:build_runner",
       "dev:freezed",
       "dev:json_serializable",
       "dev:go_router_builder"
