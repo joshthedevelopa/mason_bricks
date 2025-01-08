@@ -82,8 +82,8 @@ Future<void> installPackages(Logger logger) async {
   installProgress.complete();
 }
 
-Future<void> build(HookContext context) async {
-  final buildProgress = context.logger.progress(
+Future<void> build(Logger logger) async {
+  final buildProgress = logger.progress(
     "Building project.",
     options: _defaultOptions,
   );
