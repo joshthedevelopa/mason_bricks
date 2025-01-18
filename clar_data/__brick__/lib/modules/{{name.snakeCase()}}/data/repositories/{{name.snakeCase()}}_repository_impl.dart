@@ -1,12 +1,12 @@
 part of "../{{name.snakeCase()}}.data.dart";
 
 class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Repository {
-  final Base{{name.pascalCase()}}Service _localService;
-  final Base{{name.pascalCase()}}Service _remoteService;
+  final {{name.pascalCase()}}LocalService _localService;
+  final {{name.pascalCase()}}RemoteService _remoteService;
 
   const {{name.pascalCase()}}RepositoryImpl({
-    required Base{{name.pascalCase()}}Service localService,
-    required Base{{name.pascalCase()}}Service remoteService,
+    required Base{{name.pascalCase()}}LocalService localService,
+    required Base{{name.pascalCase()}}RemoteService remoteService,
   }) : 
     _localService = localService,
     _remoteService = remoteService;

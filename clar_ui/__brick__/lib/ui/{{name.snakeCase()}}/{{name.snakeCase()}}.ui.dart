@@ -4,7 +4,7 @@ part "views/{{ name.snakeCase() }}_view.dart";
 
 part "bloc/{{ name.snakeCase() }}_bloc.dart";
 part "bloc/{{ name.snakeCase() }}_event.dart";
-part "bloc/{{ name.snakeCase() }}_state.dart";
+part "bloc/{{ name.snakeCase() }}_ui_state.dart";
 
 part ".generated/{{ name.snakeCase() }}.freezed.dart";
 part ".generated/{{ name.snakeCase() }}.g.dart";

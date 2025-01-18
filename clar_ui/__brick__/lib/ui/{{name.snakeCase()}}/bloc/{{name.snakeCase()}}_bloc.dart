@@ -1,7 +1,7 @@
 part of "../{{name.snakeCase()}}.ui.dart";
 
-class {{name.pascalCase()}}Bloc extends Bloc<{{ name.pascalCase() }}Event, {{ name.pascalCase() }}State> {
+class {{name.pascalCase()}}Bloc extends Bloc<{{ name.pascalCase() }}Event, {{ name.pascalCase() }}UiState> {
   {{name.pascalCase()}}Bloc({
-    {{ name.pascalCase() }}State state = const {{ name.pascalCase() }}State(),
+    {{ name.pascalCase() }}UiState state = const {{ name.pascalCase() }}UiState(),
   }) : super(state);
 }
